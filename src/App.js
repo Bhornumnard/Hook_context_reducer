@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Home from './component/home'
+import Context, {Context2} from './Context'
+import {Route, Switch} from 'react-router-dom'
+import Counter from './component/Counter'
+import Example from './component/Example'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [state, setState] = useState({content: "Hello World"})
+	return (
+		<Context2.Provider value={{state, setState }}>
+			<Switch>
+				<Route  exact path="/"><Home /></Route>
+				<Route path="/counter"><Counter /></Route>
+				<Route path="/ex"><Example /></Route>
+			</Switch>
+			
+				
+		
+			
+		</Context2.Provider>
+	);
 }
 
 export default App;
